@@ -37,5 +37,39 @@ for (const link of links) {
 		});
 	});
 }
+// Seleccionar todos los enlaces de popup
+var popupLinks = document.querySelectorAll('.popup-link');
 
+// Agregar un manejador de eventos de clic a cada enlace
+for (var i = 0; i < popupLinks.length; i++) {
+  popupLinks[i].addEventListener('click', function(event) {
+    // Prevenir el comportamiento predeterminado del enlace
+    event.preventDefault();
 
+    // Obtener el ID del popup correspondiente
+    var popupId = this.getAttribute('data-popup');
+
+    // Seleccionar el popup correspondiente
+    var popup = document.getElementById('popup-' + popupId);
+
+    // Mostrar el popup
+    popup.classList.add('active');
+  });
+}
+
+// Seleccionar todos los botones de cierre de popup
+var closeButtons = document.querySelectorAll('.popup-close');
+
+// Agregar un manejador de eventos de clic a cada botón de cierre
+for (var i = 0; i < closeButtons.length; i++) {
+  closeButtons[i].addEventListener('click', function(event) {
+    // Prevenir el comportamiento predeterminado del botón
+    event.preventDefault();
+
+    // Seleccionar el popup que contiene el botón de cierre
+    var popup = this.closest('.popup');
+
+    // Ocultar el popup
+    popup.classList.remove('active');
+  });
+}
